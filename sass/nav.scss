@@ -1,0 +1,224 @@
+.nav-container {
+	text-align: left;
+	height: 100%;
+	width: 300px;
+	float: left;
+	min-height: 100%;
+
+	//background-color: blue;
+	padding: 60px 20px 0 20px;
+	//position: fixed;
+	//right: 0;
+	@include box-sizing(border-box);
+	position: absolute;
+	right: 0;
+	h1 {
+		color: black;
+		font-size: 2.8rem;
+		font-weight: bold;
+
+		span {
+			color: white;
+			background-color: $color-green;
+			padding: .4em .6em;
+			font-size: .6rem;
+			display: inline-block;
+			position: relative;
+			top: -2.2em;
+			font-weight: normal;
+			left: -.8em;
+			font-weight: bold;
+		}
+
+		&.thin {
+			font-weight: normal;
+		}
+		//margin-bottom: 30px;
+	}
+
+	ul,li {
+		width: 100%;
+		float: left;
+	}
+
+	ul li,
+	a.btn {
+			font-size: .9em;
+			text-transform: uppercase;
+			letter-spacing: .08em;
+			font-weight: bold;
+			
+			border: 1px dashed #989AA0;
+			@include box-sizing(border-box);
+			text-align: center;
+			padding: 14px;
+			margin-bottom: 16px;
+			$size: 2px;
+			//border-width: $size $size $size $size;
+			//border-width: 0 0 4px 0;
+ 			//border-image: url('/static/svg/dotted-line.svg') 33.3333% 27.5% 33.333% 27.5% round;
+ 			border-radius: 8px 8px;
+ 			position: relative;
+ 			color: #474B5B;
+
+ 			span {
+ 				color: white;
+				background-color: $color-green;
+				padding: .4em .6em;
+				font-size: .6rem;
+				display: inline-block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				font-weight: bold;
+				display: none;
+ 			}
+
+ 			&.selected {
+ 				span {
+ 					display: block;
+ 				}
+ 				color: $color-dark-green;
+ 				padding: 13px;
+ 				border-radius: 0 8px 8px 8px;
+ 				border: 2px solid $color-green;
+ 				background-color: white;
+ 				box-shadow: 0px 3px rgba(0,0,0,.1);
+ 			}
+
+ 			&:not(.selected):hover{
+ 				cursor: pointer;
+ 				color: $color-dark-green;
+ 				border: 1px solid rgba(0,0,0,.2);
+ 				background-color: rgba(255,255,255,.8);
+ 			}
+		}
+
+	.bottom,
+	.finalize,
+	a {
+		width: 100%;
+		float: left;
+	}
+
+	.bottom {
+		position: absolute;
+		bottom: 70px;
+
+		display: none;
+		a {
+			display: none;
+
+			&.undo {
+				display: block;
+			}
+		}
+
+		&.save {
+			a.save {
+				display: block;
+			}
+		}
+
+		&:not(.save){
+			a.preview {
+				display: block;
+			}
+		}
+
+		&.show {
+			display: block;
+		}
+	}
+
+	a {
+		text-transform: uppercase;
+		text-align: center;
+
+		&.undo {
+			font-size: .8rem;
+			//font-weight: bold;
+			letter-spacing: .12em;
+			color: #717072;
+			font-weight: 400;
+
+			&:hover {
+				color: #2F3238;
+				text-decoration: underline;
+
+				&:active {
+					color: black;
+					font-weight: bold;
+					letter-spacing: .105em;
+				}
+			}
+		}
+
+		&.preview {
+			border: 1px solid #C8C8C8;
+			font-size: 1rem;
+			margin-top: 1px;
+			&:not(.selected):hover {
+				border: 1px solid #989AA0;
+
+				&:active {
+					margin-top: -1px;
+					position: relative;
+					top: 1px;
+					border: 2px solid $color-green;
+				}
+			}
+		}
+
+		&.save {
+			background-color: $color-green;
+			color: white;
+			border: none;
+			font-size: 1rem;
+			//box-shadow: 0px 3px $color-dark-green;
+			border-bottom: 3px solid transparent;
+
+			&:not(.selected):hover {
+				background-color: $color-green;
+				color: white;
+				border: none;
+				border-bottom: 3px solid $color-dark-green;
+
+				&:active {
+					background-color: $color-green;
+					color: white;
+					border: none;
+					box-shadow: none;
+					border-top: 3px solid $color-dark-green;
+				}
+			}
+		}
+
+		&.preview,
+		&.save {
+			padding-top: 16px;
+		}
+
+		&.preview,
+		&.save,
+		&.undo {
+			&:hover {
+				cursor: pointer !important;
+			}
+		}
+	}
+
+	.divider {
+		width: 100%;
+		height: 1px;
+		background-color: #E1E2E5;
+		margin-bottom: 30px;
+		margin-top: 30px;
+		float: left;
+	}
+}
+
+
+#Nav {
+	pointer-events: auto;
+}

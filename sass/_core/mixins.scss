@@ -1,0 +1,208 @@
+
+/* __________________________________________________________ 
+http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+*/
+
+// _core/functions.scss
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+
+// _core/config.scss
+@mixin background-image($name, $size:false){
+    background-image: url(#{$image-path}/#{$name}.svg);
+    @if($size){
+        background-size: $size;
+    }
+    .no-svg &{
+        background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+        @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+          background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+        }
+    }
+}
+
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+     -moz-animation: #{$str};
+      -ms-animation: #{$str};
+       -o-animation: #{$str};
+          animation: #{$str};      
+}
+
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+     -moz-transition: $args;
+      -ms-transition: $args;
+       -o-transition: $args;
+          transition: $args;
+}
+
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+%visuallyhidden {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+
+
+
+
+
+/* __________________________________________________________ */
+
+@mixin opacity($value){
+  $IEValue: $value*100;
+  -ms-filter: '"progid:DXImageTransform.Microsoft.Alpha(Opacity=' + $IEValue + ')"';
+  filter: alpha(opacity=$IEValue);
+  opacity: $value;
+}
+
+@mixin blur($radius) {
+  -webkit-filter: blur($radius);
+     -moz-filter: blur($radius);
+      -ms-filter: blur($radius);
+          filter: blur($radius);
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin text-rendering( $type: geometricPrecision ) {
+  -webkit-text-rendering: $type;
+     -moz-text-rendering: $type;
+      -ms-text-rendering: $type;
+          text-rendering: $type;
+}
+
+@mixin box-sizing( $type: border-box ) {
+  -webkit-box-sizing: $type;
+     -moz-box-sizing: $type;
+      -ms-box-sizing: $type;
+          box-sizing: $type;
+}
+
+@mixin box-shadow( $val ) {
+  -webkit-box-shadow: $val;
+     -moz-box-shadow: $val;
+      -ms-box-shadow: $val;
+          box-shadow: $val;
+}
+
+@mixin text-shadow( $val ) {
+  -webkit-text-shadow: $val;
+     -moz-text-shadow: $val;
+      -ms-text-shadow: $val;
+          text-shadow: $val;
+}
+
+@mixin pointer-events($type: none) {
+  $type: unquote($type);
+
+  -webkit-pointer-events: $type;
+     -moz-pointer-events: $type;
+      -ms-pointer-events: $type;
+          pointer-events: $type;
+}
+
+@mixin scale($value) {
+  -webkit-transform: scale($value,$value); /* Safari */
+     -moz-transform: scale($value,$value);
+      -ms-transform: scale($value,$value); /* IE 9 */
+          transform: scale($value,$value);
+}
+
+@mixin scaleX($value) {
+  -webkit-transform: scale($value,1); /* Safari */
+     -moz-transform: scale($value,1);
+      -ms-transform: scale($value,1); /* IE 9 */
+          transform: scale($value,1);
+}
+
+@mixin scaleY($value) {
+  -webkit-transform: scale(1,$value); /* Safari */
+     -moz-transform: scale(1,$value);
+      -ms-transform: scale(1,$value); /* IE 9 */
+          transform: scale(1,$value);
+}
+
+@mixin scaleAndTranslate($scale,$translateX,$translateY) {
+  -webkit-transform: scale($scale,$scale) translate($translateX,$translateY); /* Safari */
+     -moz-transform: scale($scale,$scale) translate($translateX,$translateY);
+      -ms-transform: scale($scale,$scale) translate($translateX,$translateY); /* IE 9 */
+          transform: scale($scale,$scale) translate($translateX,$translateY);
+}
+
+@mixin translate($valueX,$valueY:0px) {
+  -webkit-transform: translate($valueX,$valueY); /* Safari */
+     -moz-transform: translate($valueX,$valueY);
+      -ms-transform: translate($valueX,$valueY); /* IE 9 */
+          transform: translate($valueX,$valueY);
+}
+
+@mixin translateY($value) {
+  -webkit-transform: translate(0px,$value); /* Safari */
+     -moz-transform: translate(0px,$value);
+      -ms-transform: translate(0px,$value); /* IE 9 */
+          transform: translate(0px,$value);
+}
+
+@mixin transform-origin($value) {
+  -webkit-transform-origin: ($value); /* Safari */
+     -moz-transform-origin: ($value);
+      -ms-transform-origin: ($value);  /* IE 9 */
+          transform-origin: $value;
+}
+
+@mixin rotate($value) {
+  -webkit-transform: rotate($value); /* Safari */
+     -moz-transform: rotate($value);
+      -ms-transform: rotate($value);  /* IE 9 */
+          transform: rotate($value);
+}
+
